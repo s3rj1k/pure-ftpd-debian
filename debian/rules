@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+DATE=$(shell date +%Y%m%d)
+DISTRIBUTION=$(shell lsb_release -sc)
+PACKAGEVERSION=$(DATE)~$(DISTRIBUTION)
+
+%:
+	dh $@ --with autoreconf
+
+override_dh_auto_configure:
+	CFLAGS="-O2 -DMAX_USER_LENGTH=128U" ./configure \
+	--prefix=/usr \
+	--mandir='$${prefix}'/share/man \
+	--sysconfdir=/etc/pure-ftpd \
+	--with-altlog \
+	--with-extauth \
+	--with-ftpwho \
+	--with-peruserlimits \
+	--with-puredb \
+	--with-quotas \
+	--with-rfc2640 \
+	--with-throttling \
+	--with-tls \
+	--without-humor \
+	--without-inetd \
+	--without-usernames
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf debian/pure-ftpd/etc/pure-ftpd
+
+override_dh_auto_test:
+override_dh_gencontrol:
+	dh_gencontrol -- -v$(PACKAGEVERSION)

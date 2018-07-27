@@ -1,0 +1,22 @@
+Source: pure-ftpd
+Section: net
+Priority: optional
+Maintainer: s3rj1k <evasive.gyron@gmail.com>
+Build-Depends: debhelper (>= 9), libcap2-dev, libssl-dev, openssl (>= 0.9.6), po-debconf, autoconf-archive
+Standards-Version: 3.9.6
+Homepage: http://www.pureftpd.org/
+
+Package: pure-ftpd
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Provides: ftp-server
+Conflicts: ftp-server
+Replaces: ftp-server
+Description: Secure and efficient FTP server
+ Free, secure, production-quality and standard-conformant FTP server.
+ Features include chrooted home directories,
+ virtual domains, built-in 'ls', anti-warez system, configurable ports for
+ passive downloads, FXP protocol, bandwidth throttling, ratios,
+ fortune files, Apache-like log files, fast standalone mode, atomic uploads,
+ text / HTML / XML real-time status report, virtual users, virtual quotas, 
+ privilege separation, SSL/TLS and more.

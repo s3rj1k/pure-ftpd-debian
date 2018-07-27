@@ -1,0 +1,11 @@
+/var/log/pure-ftpd/transfer.log {
+	weekly
+	missingok
+	rotate 7
+	compress
+	delaycompress
+	postrotate
+		/usr/sbin/pure-ftpd-control restart >/dev/null
+	endscript
+	notifempty
+}
